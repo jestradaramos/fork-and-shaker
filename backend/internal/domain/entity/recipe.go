@@ -16,29 +16,29 @@ const (
 
 // Ingredient represents a single ingredient in a recipe
 type Ingredient struct {
-	Name        string  `json:"name" bson:"name"`
-	Amount      float64 `json:"amount" bson:"amount"`
-	Unit        string  `json:"unit" bson:"unit"`
-	Notes       string  `json:"notes,omitempty" bson:"notes,omitempty"`
-	IsOptional  bool    `json:"is_optional" bson:"is_optional"`
+	Name       string  `json:"name" bson:"name"`
+	Amount     float64 `json:"amount" bson:"amount"`
+	Unit       string  `json:"unit" bson:"unit"`
+	Notes      string  `json:"notes,omitempty" bson:"notes,omitempty"`
+	IsOptional bool    `json:"is_optional" bson:"is_optional"`
 }
 
 // Recipe represents a recipe entity in our domain
 type Recipe struct {
-	ID          primitive.ObjectID `json:"id" bson:"_id,omitempty"`
-	Name        string            `json:"name" bson:"name"`
-	Type        RecipeType        `json:"type" bson:"type"`
-	Description string            `json:"description" bson:"description"`
-	Ingredients []Ingredient      `json:"ingredients" bson:"ingredients"`
-	Instructions []string         `json:"instructions" bson:"instructions"`
-	Glass        string           `json:"glass,omitempty" bson:"glass,omitempty"`
-	Garnish      string           `json:"garnish,omitempty" bson:"garnish,omitempty"`
-	CreatedAt    time.Time         `json:"created_at" bson:"created_at"`
-	UpdatedAt    time.Time         `json:"updated_at" bson:"updated_at"`
+	ID           primitive.ObjectID `json:"id" bson:"_id,omitempty"`
+	Name         string             `json:"name" bson:"name"`
+	Type         RecipeType         `json:"type" bson:"type"`
+	Description  string             `json:"description" bson:"description"`
+	Ingredients  []Ingredient       `json:"ingredients" bson:"ingredients"`
+	Instructions []string           `json:"instructions" bson:"instructions"`
+	Glass        string             `json:"glass,omitempty" bson:"glass,omitempty"`
+	Garnish      string             `json:"garnish,omitempty" bson:"garnish,omitempty"`
+	CreatedAt    time.Time          `json:"created_at" bson:"created_at"`
+	UpdatedAt    time.Time          `json:"updated_at" bson:"updated_at"`
 }
 
 // NewRecipe creates a new Recipe entity
-func NewRecipe(name string, recipeType RecipeType, description string, ingredients []Ingredient, 
+func NewRecipe(name string, recipeType RecipeType, description string, ingredients []Ingredient,
 	instructions []string, glass, garnish string) *Recipe {
 	now := time.Now()
 	return &Recipe{
@@ -55,7 +55,7 @@ func NewRecipe(name string, recipeType RecipeType, description string, ingredien
 }
 
 // Update updates the recipe's information
-func (r *Recipe) Update(name, description string, ingredients []Ingredient, 
+func (r *Recipe) Update(name, description string, ingredients []Ingredient,
 	instructions []string, glass, garnish string) {
 	r.Name = name
 	r.Description = description
@@ -71,7 +71,7 @@ func (r *Recipe) Validate() bool {
 	if r.Name == "" || len(r.Ingredients) == 0 || len(r.Instructions) == 0 {
 		return false
 	}
-	
+
 	// For cocktails, ensure we have at least one ingredient with an amount
 	if r.Type == RecipeTypeCocktail {
 		hasValidIngredient := false
@@ -85,6 +85,6 @@ func (r *Recipe) Validate() bool {
 			return false
 		}
 	}
-	
+
 	return true
-} 
+}

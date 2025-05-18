@@ -2,10 +2,12 @@ package http
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 
 	"fork-and-shaker/internal/application"
 	"fork-and-shaker/internal/domain/entity"
+
 	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
@@ -34,30 +36,34 @@ func (h *RecipeHandler) RegisterRoutes(r *mux.Router) {
 }
 
 type createRecipeRequest struct {
-	Name         string             `json:"name"`
-	Description  string             `json:"description"`
+	Name         string              `json:"name"`
+	Description  string              `json:"description"`
 	Ingredients  []entity.Ingredient `json:"ingredients"`
-	Instructions []string           `json:"instructions"`
-	Glass        string             `json:"glass"`
-	Garnish      string             `json:"garnish"`
+	Instructions []string            `json:"instructions"`
+	Glass        string              `json:"glass"`
+	Garnish      string              `json:"garnish"`
 }
 
 type updateRecipeRequest struct {
-	Name         string             `json:"name"`
-	Description  string             `json:"description"`
+	Name         string              `json:"name"`
+	Description  string              `json:"description"`
 	Ingredients  []entity.Ingredient `json:"ingredients"`
-	Instructions []string           `json:"instructions"`
-	Glass        string             `json:"glass"`
-	Garnish      string             `json:"garnish"`
+	Instructions []string            `json:"instructions"`
+	Glass        string              `json:"glass"`
+	Garnish      string              `json:"garnish"`
 }
 
 // CreateRecipe handles recipe creation
 func (h *RecipeHandler) CreateRecipe(w http.ResponseWriter, r *http.Request) {
 	var req createRecipeRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
+		http.Error(w, "Invalid request body: "+err.Error(), http.StatusBadRequest)
 		return
 	}
+
+	// Debug log the received request
+	requestData, _ := json.Marshal(req)
+	log.Printf("Received recipe creation request: %s", string(requestData))
 
 	recipe, err := h.recipeService.CreateRecipe(r.Context(), req.Name, req.Description,
 		req.Ingredients, req.Instructions, req.Glass, req.Garnish)
@@ -66,14 +72,23 @@ func (h *RecipeHandler) CreateRecipe(w http.ResponseWriter, r *http.Request) {
 		case application.ErrInvalidRecipe:
 			http.Error(w, err.Error(), http.StatusBadRequest)
 		default:
+			log.Printf("Error creating recipe: %v", err)
 			http.Error(w, "Internal server error", http.StatusInternalServerError)
 		}
 		return
 	}
 
+	// Debug log the created recipe
+	responseData, _ := json.Marshal(recipe)
+	log.Printf("Created recipe: %s", string(responseData))
+
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
-	json.NewEncoder(w).Encode(recipe)
+	if err := json.NewEncoder(w).Encode(recipe); err != nil {
+		log.Printf("Error encoding response: %v", err)
+		http.Error(w, "Error encoding response", http.StatusInternalServerError)
+		return
+	}
 }
 
 // GetRecipe handles getting a recipe by ID
@@ -103,12 +118,21 @@ func (h *RecipeHandler) GetRecipe(w http.ResponseWriter, r *http.Request) {
 func (h *RecipeHandler) GetCocktailRecipes(w http.ResponseWriter, r *http.Request) {
 	recipes, err := h.recipeService.GetCocktailRecipes(r.Context())
 	if err != nil {
+		log.Printf("Error getting cocktail recipes: %v", err)
 		http.Error(w, "Internal server error", http.StatusInternalServerError)
 		return
 	}
 
+	// Debug log the recipes being sent
+	responseData, _ := json.Marshal(recipes)
+	log.Printf("Sending recipes: %s", string(responseData))
+
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(recipes)
+	if err := json.NewEncoder(w).Encode(recipes); err != nil {
+		log.Printf("Error encoding response: %v", err)
+		http.Error(w, "Error encoding response", http.StatusInternalServerError)
+		return
+	}
 }
 
 // UpdateRecipe handles updating a recipe
@@ -201,4 +225,4 @@ func (h *RecipeHandler) FindByIngredient(w http.ResponseWriter, r *http.Request)
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(recipes)
-} 
+}
