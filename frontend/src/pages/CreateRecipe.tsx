@@ -138,7 +138,7 @@ export default function CreateRecipe() {
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-900"
+                        className="block w-full rounded-md border-2 border-secondary bg-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm text-foreground"
                       />
                     </div>
                   </div>
@@ -155,7 +155,7 @@ export default function CreateRecipe() {
                         required
                         value={formData.description}
                         onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-900"
+                        className="block w-full rounded-md border-2 border-secondary bg-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm text-foreground"
                       />
                     </div>
                   </div>
@@ -172,7 +172,7 @@ export default function CreateRecipe() {
                         required
                         value={formData.glass}
                         onChange={(e) => setFormData({ ...formData, glass: e.target.value })}
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-900"
+                        className="block w-full rounded-md border-2 border-secondary bg-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm text-foreground"
                       />
                     </div>
                   </div>
@@ -188,7 +188,7 @@ export default function CreateRecipe() {
                         id="garnish"
                         value={formData.garnish}
                         onChange={(e) => setFormData({ ...formData, garnish: e.target.value })}
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-900"
+                        className="block w-full rounded-md border-2 border-secondary bg-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm text-foreground"
                       />
                     </div>
                   </div>
@@ -211,7 +211,7 @@ export default function CreateRecipe() {
                             required
                             value={ingredient.name}
                             onChange={(e) => handleIngredientChange(index, 'name', e.target.value)}
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-900"
+                            className="mt-1 block w-full rounded-md border-2 border-secondary bg-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm text-foreground"
                           />
                         </div>
                         <div className="col-span-2">
@@ -221,7 +221,7 @@ export default function CreateRecipe() {
                             required
                             value={ingredient.amount}
                             onChange={(e) => handleIngredientChange(index, 'amount', e.target.value)}
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-900"
+                            className="mt-1 block w-full rounded-md border-2 border-secondary bg-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm text-foreground"
                           />
                         </div>
                         <div className="col-span-3">
@@ -231,7 +231,7 @@ export default function CreateRecipe() {
                             required
                             value={ingredient.unit}
                             onChange={(e) => handleIngredientChange(index, 'unit', e.target.value)}
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-900"
+                            className="mt-1 block w-full rounded-md border-2 border-secondary bg-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm text-foreground"
                           />
                         </div>
                         <div className="col-span-1 flex items-end justify-end">
@@ -274,7 +274,7 @@ export default function CreateRecipe() {
                               required
                               value={instruction}
                               onChange={(e) => handleInstructionChange(index, e.target.value)}
-                              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-gray-900"
+                              className="block w-full rounded-md border-2 border-secondary bg-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm text-foreground"
                             />
                           </div>
                         </div>

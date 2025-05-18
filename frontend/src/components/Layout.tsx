@@ -1,7 +1,9 @@
 import React from 'react'
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { MoonIcon, SunIcon } from '@heroicons/react/24/solid'
 import { Link, Outlet, useLocation } from 'react-router-dom'
+import { useTheme } from './ThemeProvider'
 
 const navigation = [
   { name: 'Recipes', href: '/' },
@@ -10,20 +12,21 @@ const navigation = [
 
 export default function Layout() {
   const location = useLocation()
+  const { theme, toggleTheme } = useTheme()
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-50 to-gray-100">
-      <Disclosure as="nav" className="bg-white shadow-lg flex-shrink-0">
+    <div className="min-h-screen flex flex-col bg-background text-foreground">
+      <Disclosure as="nav" className="bg-card shadow-lg flex-shrink-0">
         {({ open }) => (
           <>
             <div className="w-full px-4 sm:px-6 lg:px-8">
               <div className="flex h-16 justify-between">
                 <div className="flex">
                   <Link to="/" className="flex flex-shrink-0 items-center">
-                    <div className="h-10 w-10 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center">
-                      <span className="text-xl font-bold text-white">F&S</span>
+                    <div className="h-10 w-10 rounded-lg bg-primary flex items-center justify-center">
+                      <span className="text-xl font-bold text-primary-foreground">F&S</span>
                     </div>
-                    <span className="ml-3 text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                    <span className="ml-3 text-xl font-bold text-primary">
                       Fork & Shaker
                     </span>
                   </Link>
@@ -36,8 +39,8 @@ export default function Layout() {
                           to={item.href}
                           className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
                             isActive
-                              ? 'border-b-2 border-indigo-500 text-gray-900'
-                              : 'border-b-2 border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                              ? 'border-b-2 border-primary text-foreground'
+                              : 'border-b-2 border-transparent text-muted-foreground hover:border-border hover:text-foreground'
                           }`}
                         >
                           {item.name}
@@ -46,15 +49,27 @@ export default function Layout() {
                     })}
                   </div>
                 </div>
-                <div className="-mr-2 flex items-center sm:hidden">
-                  <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-                    <span className="sr-only">Open main menu</span>
-                    {open ? (
-                      <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                <div className="flex items-center space-x-4">
+                  <button
+                    onClick={toggleTheme}
+                    className="p-2 rounded-md bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                  >
+                    {theme === 'dark' ? (
+                      <SunIcon className="h-5 w-5" />
                     ) : (
-                      <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                      <MoonIcon className="h-5 w-5" />
                     )}
-                  </Disclosure.Button>
+                  </button>
+                  <div className="sm:hidden">
+                    <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-muted-foreground hover:bg-secondary hover:text-foreground focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary">
+                      <span className="sr-only">Open main menu</span>
+                      {open ? (
+                        <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                      ) : (
+                        <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                      )}
+                    </Disclosure.Button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -70,8 +85,8 @@ export default function Layout() {
                       to={item.href}
                       className={`block py-2 pl-3 pr-4 text-base font-medium ${
                         isActive
-                          ? 'border-l-4 border-indigo-500 bg-indigo-50 text-indigo-700'
-                          : 'border-l-4 border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700'
+                          ? 'border-l-4 border-primary bg-primary/10 text-primary'
+                          : 'border-l-4 border-transparent text-muted-foreground hover:border-border hover:bg-secondary hover:text-foreground'
                       }`}
                     >
                       {item.name}
