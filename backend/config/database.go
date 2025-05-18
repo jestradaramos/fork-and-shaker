@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	"fafa/internal/infrastructure/mongodb"
+	"fork-and-shaker/internal/infrastructure/mongodb"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"

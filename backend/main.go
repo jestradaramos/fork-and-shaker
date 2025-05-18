@@ -8,10 +8,10 @@ import (
 	"os/signal"
 	"syscall"
 
-	"fafa/config"
-	"fafa/internal/application"
-	"fafa/internal/infrastructure/mongodb"
-	handlers "fafa/internal/interfaces/http"
+	"fork-and-shaker/config"
+	"fork-and-shaker/internal/application"
+	"fork-and-shaker/internal/infrastructure/mongodb"
+	handlers "fork-and-shaker/internal/interfaces/http"
 
 	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"

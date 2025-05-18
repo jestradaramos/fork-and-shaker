@@ -4,8 +4,8 @@ import (
 	"context"
 	"errors"
 
-	"fafa/internal/domain/entity"
-	"fafa/internal/domain/repository"
+	"fork-and-shaker/internal/domain/entity"
+	"fork-and-shaker/internal/domain/repository"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 

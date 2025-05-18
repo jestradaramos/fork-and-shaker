@@ -3,7 +3,7 @@ package repository
 import (
 	"context"
 
-	"fafa/internal/domain/entity"
+	"fork-and-shaker/internal/domain/entity"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 

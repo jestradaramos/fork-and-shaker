@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"fafa/internal/application"
-	"fafa/internal/domain/entity"
+	"fork-and-shaker/internal/application"
+	"fork-and-shaker/internal/domain/entity"
 	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
