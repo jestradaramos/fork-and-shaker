@@ -1,0 +1,188 @@
+{
+	"info": {
+		"_postman_id": "b5e3f5a1-0b5c-4e5d-8e5a-9b7b7f5e1b5a",
+		"name": "Fafa Cocktails API",
+		"description": "API collection for the Fafa Cocktails application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Recipes",
+			"item": [
+				{
+					"name": "Create Recipe",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Mojito\",\n  \"type\": \"cocktail\",\n  \"description\": \"A refreshing Cuban cocktail\",\n  \"ingredients\": [\n    {\n      \"name\": \"white rum\",\n      \"amount\": 2,\n      \"unit\": \"oz\",\n      \"isOptional\": false\n    },\n    {\n      \"name\": \"lime juice\",\n      \"amount\": 1,\n      \"unit\": \"oz\",\n      \"isOptional\": false\n    },\n    {\n      \"name\": \"mint leaves\",\n      \"amount\": 6,\n      \"unit\": \"leaves\",\n      \"isOptional\": false\n    },\n    {\n      \"name\": \"simple syrup\",\n      \"amount\": 0.75,\n      \"unit\": \"oz\",\n      \"isOptional\": false\n    }\n  ],\n  \"instructions\": [\n    \"Muddle mint leaves with simple syrup\",\n    \"Add lime juice and rum\",\n    \"Fill glass with ice and stir\",\n    \"Top with club soda\",\n    \"Garnish with mint sprig\"\n  ],\n  \"glass\": \"Highball\",\n  \"garnish\": \"Mint sprig\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/recipes",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "recipes"]
+						},
+						"description": "Create a new cocktail recipe"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Cocktail Recipes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/recipes",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "recipes"]
+						},
+						"description": "Get all cocktail recipes"
+					},
+					"response": []
+				},
+				{
+					"name": "Search Recipes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/recipes/search?q=lime&cocktails_only=true",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "recipes", "search"],
+							"query": [
+								{
+									"key": "q",
+									"value": "lime",
+									"description": "Search query"
+								},
+								{
+									"key": "cocktails_only",
+									"value": "true",
+									"description": "Filter for cocktails only"
+								}
+							]
+						},
+						"description": "Search recipes by name, description, or ingredients"
+					},
+					"response": []
+				},
+				{
+					"name": "Search by Ingredient",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/recipes/by-ingredient?q=rum",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "recipes", "by-ingredient"],
+							"query": [
+								{
+									"key": "q",
+									"value": "rum",
+									"description": "Ingredient to search for"
+								}
+							]
+						},
+						"description": "Search recipes by ingredient"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Recipe by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/recipes/{{recipe_id}}",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "recipes", "{{recipe_id}}"]
+						},
+						"description": "Get a specific recipe by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Recipe",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Classic Margarita\",\n  \"type\": \"cocktail\",\n  \"description\": \"A classic tequila cocktail\",\n  \"ingredients\": [\n    {\n      \"name\": \"tequila\",\n      \"amount\": 2,\n      \"unit\": \"oz\",\n      \"isOptional\": false\n    },\n    {\n      \"name\": \"lime juice\",\n      \"amount\": 1,\n      \"unit\": \"oz\",\n      \"isOptional\": false\n    },\n    {\n      \"name\": \"triple sec\",\n      \"amount\": 1,\n      \"unit\": \"oz\",\n      \"isOptional\": false\n    }\n  ],\n  \"instructions\": [\n    \"Combine ingredients in a shaker with ice\",\n    \"Shake well\",\n    \"Strain into a salt-rimmed glass\",\n    \"Garnish with lime wheel\"\n  ],\n  \"glass\": \"Coupe\",\n  \"garnish\": \"Lime wheel and salt rim\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/recipes/{{recipe_id}}",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "recipes", "{{recipe_id}}"]
+						},
+						"description": "Update an existing recipe"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Recipe",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/recipes/{{recipe_id}}",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "recipes", "{{recipe_id}}"]
+						},
+						"description": "Delete a recipe"
+					},
+					"response": []
+				}
+			],
+			"description": "Recipe management endpoints"
+		},
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/health",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "health"]
+				},
+				"description": "Check if the API is running"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "recipe_id",
+			"value": "",
+			"description": "ID of a recipe (replace with an actual ID after creating a recipe)"
+		}
+	]
+} 
