@@ -114,13 +114,13 @@ export default function CreateRecipe() {
   return (
     <div className="flex-1 flex flex-col h-full">
       <div className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-6">
-        <div className="bg-white shadow-sm rounded-lg h-full flex flex-col">
+        <div className="bg-card shadow-sm rounded-lg h-full flex flex-col">
           <form onSubmit={handleSubmit} className="flex flex-col h-full">
-            <div className="flex-1 space-y-8 divide-y divide-gray-200 p-4 sm:p-8">
+            <div className="flex-1 space-y-8 divide-y divide-border p-4 sm:p-8">
               <div>
                 <div>
-                  <h3 className="text-2xl font-bold leading-6 text-gray-900">Create New Recipe</h3>
-                  <p className="mt-2 text-sm text-gray-500">
+                  <h3 className="text-2xl font-bold leading-6 text-foreground">Create New Recipe</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
                     Fill out the form below to create a new cocktail recipe.
                   </p>
                 </div>
@@ -138,7 +138,7 @@ export default function CreateRecipe() {
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="block w-full rounded-md border-2 border-secondary bg-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm text-foreground"
+                        className="block w-full rounded-md border-2 border-primary/50 bg-background shadow-sm focus:border-primary focus:ring-primary sm:text-sm text-foreground placeholder:text-muted-foreground"
                       />
                     </div>
                   </div>
@@ -155,7 +155,7 @@ export default function CreateRecipe() {
                         required
                         value={formData.description}
                         onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                        className="block w-full rounded-md border-2 border-secondary bg-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm text-foreground"
+                        className="block w-full rounded-md border-2 border-primary/50 bg-background shadow-sm focus:border-primary focus:ring-primary sm:text-sm text-foreground placeholder:text-muted-foreground"
                       />
                     </div>
                   </div>
@@ -172,7 +172,7 @@ export default function CreateRecipe() {
                         required
                         value={formData.glass}
                         onChange={(e) => setFormData({ ...formData, glass: e.target.value })}
-                        className="block w-full rounded-md border-2 border-secondary bg-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm text-foreground"
+                        className="block w-full rounded-md border-2 border-primary/50 bg-background shadow-sm focus:border-primary focus:ring-primary sm:text-sm text-foreground placeholder:text-muted-foreground"
                       />
                     </div>
                   </div>
@@ -188,7 +188,7 @@ export default function CreateRecipe() {
                         id="garnish"
                         value={formData.garnish}
                         onChange={(e) => setFormData({ ...formData, garnish: e.target.value })}
-                        className="block w-full rounded-md border-2 border-secondary bg-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm text-foreground"
+                        className="block w-full rounded-md border-2 border-primary/50 bg-background shadow-sm focus:border-primary focus:ring-primary sm:text-sm text-foreground placeholder:text-muted-foreground"
                       />
                     </div>
                   </div>
@@ -197,8 +197,8 @@ export default function CreateRecipe() {
 
               <div className="pt-8">
                 <div>
-                  <h3 className="text-lg font-medium leading-6 text-gray-900">Ingredients</h3>
-                  <p className="mt-1 text-sm text-gray-500">Add all ingredients needed for this recipe.</p>
+                  <h3 className="text-lg font-medium leading-6 text-foreground">Ingredients</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">Add all ingredients needed for this recipe.</p>
                 </div>
                 <div className="mt-6 space-y-6">
                   <div className="grid gap-6 md:grid-cols-2">
@@ -211,7 +211,7 @@ export default function CreateRecipe() {
                             required
                             value={ingredient.name}
                             onChange={(e) => handleIngredientChange(index, 'name', e.target.value)}
-                            className="mt-1 block w-full rounded-md border-2 border-secondary bg-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm text-foreground"
+                            className="mt-1 block w-full rounded-md border-2 border-primary/50 bg-background shadow-sm focus:border-primary focus:ring-primary sm:text-sm text-foreground placeholder:text-muted-foreground"
                           />
                         </div>
                         <div className="col-span-2">
@@ -221,7 +221,7 @@ export default function CreateRecipe() {
                             required
                             value={ingredient.amount}
                             onChange={(e) => handleIngredientChange(index, 'amount', e.target.value)}
-                            className="mt-1 block w-full rounded-md border-2 border-secondary bg-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm text-foreground"
+                            className="mt-1 block w-full rounded-md border-2 border-primary/50 bg-background shadow-sm focus:border-primary focus:ring-primary sm:text-sm text-foreground placeholder:text-muted-foreground"
                           />
                         </div>
                         <div className="col-span-3">
@@ -231,7 +231,7 @@ export default function CreateRecipe() {
                             required
                             value={ingredient.unit}
                             onChange={(e) => handleIngredientChange(index, 'unit', e.target.value)}
-                            className="mt-1 block w-full rounded-md border-2 border-secondary bg-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm text-foreground"
+                            className="mt-1 block w-full rounded-md border-2 border-primary/50 bg-background shadow-sm focus:border-primary focus:ring-primary sm:text-sm text-foreground placeholder:text-muted-foreground"
                           />
                         </div>
                         <div className="col-span-1 flex items-end justify-end">
@@ -249,7 +249,7 @@ export default function CreateRecipe() {
                   <button
                     type="button"
                     onClick={addIngredient}
-                    className="w-full sm:w-auto inline-flex items-center justify-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className="w-full sm:w-auto inline-flex items-center justify-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-primary-foreground bg-primary/90 hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                   >
                     <PlusIcon className="h-5 w-5 mr-2" />
                     Add Ingredient
@@ -259,8 +259,8 @@ export default function CreateRecipe() {
 
               <div className="pt-8">
                 <div>
-                  <h3 className="text-lg font-medium leading-6 text-gray-900">Instructions</h3>
-                  <p className="mt-1 text-sm text-gray-500">Add step-by-step instructions for making this cocktail.</p>
+                  <h3 className="text-lg font-medium leading-6 text-foreground">Instructions</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">Add step-by-step instructions for making this cocktail.</p>
                 </div>
                 <div className="mt-6 space-y-6">
                   <div className="grid gap-6 md:grid-cols-2">
@@ -274,7 +274,7 @@ export default function CreateRecipe() {
                               required
                               value={instruction}
                               onChange={(e) => handleInstructionChange(index, e.target.value)}
-                              className="block w-full rounded-md border-2 border-secondary bg-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm text-foreground"
+                              className="block w-full rounded-md border-2 border-primary/50 bg-background shadow-sm focus:border-primary focus:ring-primary sm:text-sm text-foreground placeholder:text-muted-foreground"
                             />
                           </div>
                         </div>
@@ -293,7 +293,7 @@ export default function CreateRecipe() {
                   <button
                     type="button"
                     onClick={addInstruction}
-                    className="w-full sm:w-auto inline-flex items-center justify-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className="w-full sm:w-auto inline-flex items-center justify-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-primary-foreground bg-primary/90 hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                   >
                     <PlusIcon className="h-5 w-5 mr-2" />
                     Add Step
@@ -302,18 +302,18 @@ export default function CreateRecipe() {
               </div>
             </div>
 
-            <div className="px-4 sm:px-8 py-5 bg-gray-50 rounded-b-lg">
+            <div className="px-4 sm:px-8 py-5 bg-muted/50 rounded-b-lg">
               <div className="flex flex-col sm:flex-row justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => navigate('/')}
-                  className="w-full sm:w-auto rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  className="w-full sm:w-auto rounded-md border-2 border-secondary bg-card py-2 px-4 text-sm font-medium text-foreground shadow-sm hover:bg-secondary/50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="w-full sm:w-auto inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  className="w-full sm:w-auto inline-flex justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-primary-foreground shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                 >
                   Create Recipe
                 </button>
